@@ -112,8 +112,6 @@ app.post('/users', (req, res) => {
     var user = new User(body);
     user.save().then(() => {
         return user.generateAuthToken();
-    },(e)=>{
-        res.send(e);
     }).then((token) => {
         res.header('x-auth', token).send(user);
     }).catch((e) => {
