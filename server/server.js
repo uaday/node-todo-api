@@ -16,7 +16,9 @@ app.use(bodyParser.json());
 
 app.post('/todos', (req, res) => {
     var todo = new Todo({
-        text: req.body.text
+        text: req.body.text,
+        completed: req.body.completed,
+        completedAt: req.body.completedAt
     });
 
     todo.save().then((doc) => {
@@ -108,18 +110,31 @@ app.patch('/todos/:id', (req, res) => {
 });
 
 
-app.post('/users', (req, res) => {
-    var body = _.pick(req.body, ['email', 'password']);
-    var user = new User(body);
-    user.save().then(() => {
-        return user.generateAuthToken();
-    }).then((token) => {
-        res.header('x-auth', token).send(user);
-    }).catch((e) => {
-        res.status(400).send(e);
-    })
-})
+// app.post('/users', (req, res) => {
+//     var body = _.pick(req.body, ['email', 'password']);
+//     var user = new User(body);
+//     user.save().then(() => {
+//         return user.generateAuthToken();
+//     }).then((token) => {
+//         res.header('x-auth', token).send(user);
+//     }).catch((e) => {
+//         res.status(400).send(e);
+//     })
+// })
 
+app.post('/users', (req, res) => {
+    let body = _.pick(req.body, ['email', 'password']);
+    let user = new User(body);
+    user.save().then((docs)=>{
+        res.status(200).send({
+            response:docs,
+            message:'User Information Successfully Inserted',
+            status:200
+        })
+    }).catch((e)=>{
+        res.status(400).send(e);
+    });
+});
 
 app.get('/users/me', authenticate, (req, res) => {
     res.status(200).send(req.user);
@@ -128,6 +143,9 @@ app.get('/users/me', authenticate, (req, res) => {
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
 });
+
+
+
 
 module.exports = { app };
 
