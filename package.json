@@ -4,13 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
     "start": "nodemon server/server.js",
     "test": "export NODE_ENV=test || set \"NODE_ENV=test\" && mocha server/**/*.test.js",
-=======
-    "start": "node server/server.js",
-    "test": "export NODE_ENV=test || set \"NODE_ENV=test\" && mocha server/**/*.test.js --timeout=8000",
->>>>>>> 9b70da840d8623f8fd808fd6e0a90e317c10329d
     "test-watch": "nodemon --exec \"npm test\" "
   },
   "engines": {
