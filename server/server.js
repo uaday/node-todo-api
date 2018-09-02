@@ -109,7 +109,6 @@ app.patch('/todos/:id', (req, res) => {
     })
 });
 
-
 // app.post('/users', (req, res) => {
 //     var body = _.pick(req.body, ['email', 'password']);
 //     var user = new User(body);
@@ -121,13 +120,12 @@ app.patch('/todos/:id', (req, res) => {
 //         res.status(400).send(e);
 //     })
 // })
-
 app.post('/users', (req, res) => {
     let body = _.pick(req.body, ['email', 'password']);
     let user = new User(body);
-    user.save().then((docs)=>{
+    user.save().then(()=>{
         res.status(200).send({
-            response:docs,
+            response:user,
             message:'User Information Successfully Inserted',
             status:200
         })
