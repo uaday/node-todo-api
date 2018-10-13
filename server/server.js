@@ -1,4 +1,5 @@
 require('./config/config');
+
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -43,11 +44,7 @@ app.get('/todos', (req, res) => {
     res.status(400).send(e);
 });
 
-
-
-
 //GET /todos/12345
-
 app.get('/todos/:id', (req, res) => {
     var id = req.params.id;
     if (!ObjectID.isValid(id)) {
@@ -132,24 +129,13 @@ app.post('/users', (req, res) => {
     })
 })
 
-app.get('/users/me', (req, res) => {
-    var token = req.header('X-auth');
-
-    User.findByToken(token).then((user)=>{
-        if(!user){
-            return Promise.reject();
-        }
-        res.status(200).send(user);
-    }).catch((e)=>{
-        res.status(401).send(e);
-    })
+app.get('/users/me', authenticate,(req, res) => {
+    res.send(req.user);
 });
 
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
 });
-
-
 
 
 module.exports = { app };
