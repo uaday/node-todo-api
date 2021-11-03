@@ -26,6 +26,6 @@
     "mongoose": "^5.0.15",
     "save-dev": "^2.0.0",
     "supertest": "^3.0.0",
-    "validator": "^10.2.0"
+    "validator": "^13.7.0"
   }
 }
