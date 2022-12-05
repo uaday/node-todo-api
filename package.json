@@ -15,10 +15,10 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.2",
+    "body-parser": "^1.19.2",
     "crypto-js": "^3.1.9-1",
     "expect": "^22.4.3",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",
     "mocha": "^5.1.1",
